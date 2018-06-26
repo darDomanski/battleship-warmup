@@ -1,19 +1,20 @@
-import java.util.*;
-import java.io.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 class Ocean
 {
-    Map <Integer, LinkedList<Square>> ocean;
+    Map <Character, LinkedList<Square>> ocean;
     Ocean()
     {
-        ocean = new HashMap<Integer, LinkedList<Square>>();
+        ocean = new HashMap<Character, LinkedList<Square>>();
         makeMap();
     }
 
 
     public void makeMap()
     {
-        for(int i = 0; i<10; i++)
+        for(char i = 'a'; i< 'k'; i++)
         { 
             this.ocean.put(i, new LinkedList<Square>());
 
@@ -30,7 +31,7 @@ class Ocean
 
     public void printMap()
     {
-        for(int i = 0; i < 10; i ++)
+        for(char i = 'a'; i < 'k'; i ++)
         {
             for (int j = 0; j < 10; j++)
             {
@@ -42,7 +43,7 @@ class Ocean
     }
 
 
-    public void attackSquare(Integer i, int j)
+    public void attackSquare(char i, int j)
     {
         this.ocean.get(i).get(j).done = true;
         this.ocean.get(i).get(j).squares();
@@ -51,7 +52,7 @@ class Ocean
 
 
     
-    public void squareShip(Integer i, int j)
+    public void squareShip(char i, int j)
     {
         this.ocean.get(i).get(j).squareBoard = false;
         this.ocean.get(i).get(j).squareShip = true;
@@ -61,7 +62,7 @@ class Ocean
     }
 
     
-    public Square getSquare(Integer key, int value)
+    public Square getSquare(char key, int value)
     {
         return this.ocean.get(key).get(value);
     }
