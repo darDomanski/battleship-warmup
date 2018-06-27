@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -5,10 +6,14 @@ import java.util.Map;
 class Ocean
 {
     Map <Character, LinkedList<Square>> ocean;
+    ArrayList<Ship> ships;
+
     Ocean()
     {
         ocean = new HashMap<Character, LinkedList<Square>>();
+        ships = new ArrayList<Ship>();
         makeMap();
+        addShips();
     }
 
 
@@ -26,6 +31,39 @@ class Ocean
 
             }
         }
+    }
+
+    public void addShips() {
+        String[] shipsNames = {"Carrier", "Battleship", "Cruiser", "Submarine", "Destroyer"};
+        int[] lengthsOfShips = {5, 4, 3, 3, 2};
+        for (int i = 0; i < shipsNames.length; i++) {
+            this.ships.add(new Ship(shipsNames[i], lengthsOfShips[i]));
+        }
+    }
+
+    public void assignSquaresToShip(char vertCoordinate, int horCoordinate, int length) {
+        this.ships.get(checkShipIndex(length)).shipSquares.add(getSquare(vertCoordinate, horCoordinate));
+    }
+
+    public int checkShipIndex(int length) {
+        int shipIndex = -1;
+        switch (length) {
+            case 5:
+            shipIndex = 0;
+            break;
+            case 4:
+            shipIndex = 1;
+            case 3:
+            if (ships.get(2).shipSquares.isEmpty()) shipIndex = 2;
+            else shipIndex = 3;
+            break;
+            case 2:
+            shipIndex = 4;
+            break;
+            default:
+            System.out.println("Ships length must be from 5 to 2!");
+        }
+        return shipIndex;
     }
 
 
@@ -68,13 +106,16 @@ class Ocean
     }
 
     public void placeShip(String arrangment, char vertCoordinate, int horCoordinate, int length) {
+        horCoordinate -= 1;
         if (spaceCheck(arrangment, vertCoordinate, horCoordinate, length)) {
             if (neighbourSquareCheck(arrangment, vertCoordinate, horCoordinate, length)) {
                 for (int i = 0; i < length; i++) {
                     if (arrangment.equals("horizontal")) {
                         squareShip(vertCoordinate, horCoordinate + i);
+                        assignSquaresToShip(vertCoordinate, horCoordinate + i, length);
                     } else if (arrangment.equals("vertical")) {
                         squareShip((char)(vertCoordinate + i), horCoordinate);
+                        assignSquaresToShip((char)(vertCoordinate + i), horCoordinate, length);
                     }
                 }
             }
