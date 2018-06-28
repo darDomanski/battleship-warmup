@@ -96,7 +96,7 @@ class Ocean {
         getSquare(i, j).squareBoard = false;
         getSquare(i, j).squareShip = true;
         getSquare(i, j).squares();
-        printMap();
+        
 
     }
 
@@ -183,25 +183,27 @@ class Ocean {
         boolean game = false;
         boolean whileBool = true;
 
-        while(whileBool){
-            for(Ship shipFromShips : this.ships)
-            {
-                for(Square squareFromShip : shipFromShips.shipSquares)
+        done:
+            while(whileBool){
+                
+                for(Ship shipFromShips : this.ships)
                 {
-                    if(squareFromShip.done = true)
+                    for(Square squareFromShip : shipFromShips.shipSquares)
                     {
-                        game = false;
+                        if(squareFromShip.done)
+                        {
+                            game = false;
+                        }
+                        else if(!squareFromShip.done)
+                        {
+                            game = true;
+                            break done;
+                            
+                        }
+
                     }
-                    else if(squareFromShip.done = false)
-                    {
-                        game = true;
-                        whileBool = false;
-                        
-                    }
-                    System.out.println("Kutas");
                 }
             }
-        }
         return game;
     }
 

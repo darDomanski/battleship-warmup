@@ -76,7 +76,7 @@ class HumanPlayer {
     public void attackSquare(Ocean enemy, Ocean emptyMap, char answer, int answer2)
     {
         enemy.getSquare(answer, answer2).done = true;
-        enemy.getSquare(answer, answer2).squares(); //emptyMap, answer, answer2, true
+        enemy.getSquare(answer, answer2).squares(emptyMap, answer, answer2, true); //emptyMap, answer, answer2, true
 
 
     }

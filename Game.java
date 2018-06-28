@@ -21,32 +21,62 @@ class Game{
             gracz1.chooseShipsLocation();
             gracz2.chooseShipsLocation();
             boolean active = true;
+            boolean test = true;
             //gracz1.playerShipMap.checkShips() && gracz2.playerShipMap.checkShips()
-            while(active)
+            while(active)   
             {
-                System.out.println("Player one choose coordinates");
-                System.out.println("Char: ");
-                charAnswer = Common.getChar();
-                answer = Common.getInt();
-                gracz1.attackSquare(gracz2.playerShipMap, gracz1.playerCleanMap, charAnswer, answer);
-                gracz1.playerCleanMap.printMap();
-                System.out.println("Cos");
-                active = gracz1.playerShipMap.checkShips();
-                System.out.println("cos");
-                
-                // if(gracz1.playerShipMap.checkShips())
-                //     break;
+            while(test){
+
+                player(gracz1, gracz2, charAnswer, test, active, answer);
+                player(gracz2, gracz1, charAnswer, test, active, answer);
+
+
             }
 
             
 
             
-        }else if (answer == 3){
+        }}else if (answer == 3){
 
         }
 
 
 
+    }
+
+
+
+    private static void player(HumanPlayer gracz1, HumanPlayer gracz2, char charAnswer, boolean test, boolean active, int answer)
+    {
+        System.out.print("\033[H\033[2J");
+
+        System.out.println("Your hits!");
+        gracz1.playerCleanMap.printMap();
+        System.out.println("\nYour map!");
+        gracz1.playerShipMap.printMap();
+        System.out.println("\nEnemy map(tests)");
+        gracz2.playerShipMap.printMap();
+        System.out.println("Player one choose coordinates");
+        System.out.println("Char: ");
+        charAnswer = Common.getChar();
+        System.out.println("Integer: ");
+        answer = Common.getInt();
+      
+
+        try{
+            gracz1.attackSquare(gracz2.playerShipMap, gracz1.playerCleanMap, charAnswer, answer);
+            test = false;
+        }
+        catch(NullPointerException e){
+            System.out.println("You selected wrong coordinates!");
+        }
+    
+        test = true;
+        gracz1.playerCleanMap.printMap();
+        active = gracz1.playerShipMap.checkShips();
+        System.out.println("Enter button (int) to continue");
+        answer = Common.getInt();
+        System.out.print("\033[H\033[2J");
     }
 
 
