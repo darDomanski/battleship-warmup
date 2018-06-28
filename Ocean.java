@@ -47,7 +47,7 @@ class Ocean {
         case 4:
             shipIndex = 1;
         case 3:
-            if (ships.get(2).shipSquares.isEmpty())
+            if (ships.get(2).shipSquares.size() < 3)
                 shipIndex = 2;
             else
                 shipIndex = 3;
