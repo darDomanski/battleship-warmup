@@ -10,6 +10,9 @@ class Game{
 
         gra.placeShip("vertical", 'b', 3, 2);
         System.out.println(gra.ships.get(4).shipSquares);
+
+        gra.squareShip('b', 1); //gra.getSquare('b', 0)
+        gra.printMap();
         
     
 
