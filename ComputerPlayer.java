@@ -69,6 +69,7 @@ public class ComputerPlayer {
         char vertCoordinate = randomVerCoordinate();
         int horCoordinate = randomHorCoordinate();
         this.mapToGuess.attackSquare(vertCoordinate, horCoordinate);
+        this.mapToGuess.getSquare(vertCoordinate, horCoordinate).squares();
     }
 
 }

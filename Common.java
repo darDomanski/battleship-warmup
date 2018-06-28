@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Common {
     public static int getInt() {
-        String intString;
+        String intString = "";
         boolean isNotInteger = true;
         int number = 0;
         while (isNotInteger) {
@@ -29,19 +29,7 @@ public class Common {
     public static char getChar()
     {
         Scanner charInput = new Scanner(System.in);
-        
-        while (isNotInteger) {
-
-            char text = charInput.next().charAt(0);
-
-            try {
-                number = Integer.parseInt(intString);
-                isNotInteger = false;
-            } catch (NumberFormatException e) {
-                System.out.println("Error! Type a number...");
-                isNotInteger = true;
-            }
-        }
+        char text = charInput.next().charAt(0);
         return text;
     }
 }
