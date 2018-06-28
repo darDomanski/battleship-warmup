@@ -61,9 +61,24 @@ class Ocean {
         return shipIndex;
     }
 
-    public void printMap() {
-        for (char i = 'a'; i < 'k'; i++) {
-            for (int j = 0; j < 10; j++) {
+
+    public void printMap()
+    {
+        for(int j = 1; j <12; j++)
+            if (j == 1)
+                System.out.print("  " + j);
+            else if(j == 11)
+                System.out.println();
+            else
+                System.out.print(j);
+
+
+        for(char i = 'a'; i < 'k'; i ++)
+        {
+            System.out.print(i + " ");
+            for (int j = 0; j < 10; j++)
+            {
+                
                 System.out.print(this.ocean.get(i).get(j).representation);
             }
             System.out.println();
@@ -71,11 +86,11 @@ class Ocean {
         System.out.println();
     }
 
-    public void attackSquare(char i, int j) {
-        getSquare(i, j).done = true;
-        getSquare(i, j).squares();
-        printMap();
-    }
+    // public void attackSquare(char i, int j) {
+    //     getSquare(i, j).done = true;
+    //     getSquare(i, j).squares();
+    //     printMap();
+    // }
 
     public void squareShip(char i, int j) {
         getSquare(i, j).squareBoard = false;
@@ -162,5 +177,34 @@ class Ocean {
         }
         return neighbourSquaresEmpty;
     }
+    
+    public boolean checkShips()
+    {
+        boolean game = false;
+        boolean whileBool = true;
+
+        while(whileBool){
+            for(Ship shipFromShips : this.ships)
+            {
+                for(Square squareFromShip : shipFromShips.shipSquares)
+                {
+                    if(squareFromShip.done = true)
+                    {
+                        game = false;
+                    }
+                    else if(squareFromShip.done = false)
+                    {
+                        game = true;
+                        whileBool = false;
+                        
+                    }
+                    System.out.println("Kutas");
+                }
+            }
+        }
+        return game;
+    }
+
+    
 
 }
