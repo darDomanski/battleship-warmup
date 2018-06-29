@@ -47,13 +47,13 @@ public class ComputerPlayer {
         }
     }
 
-    public char randomVerCoordinate() {
+    public static char randomVerCoordinate() {
         String verCoordinates = "bcdefghi";
         Random rd = new Random();
         return verCoordinates.charAt(rd.nextInt(verCoordinates.length()));
     }
 
-    public int randomHorCoordinate() {
+    public static int randomHorCoordinate() {
         Random rd = new Random();
         int[] coordinates = { 2, 3, 4, 5, 6, 7, 8, 9 };
         return coordinates[rd.nextInt(coordinates.length)];
@@ -65,11 +65,19 @@ public class ComputerPlayer {
         return arrangments[rd.nextInt(2)];
     }
 
-    public void hit() {
-        char vertCoordinate = randomVerCoordinate();
-        int horCoordinate = randomHorCoordinate();
-        this.mapToGuess.attackSquare(vertCoordinate, horCoordinate);
-        this.mapToGuess.getSquare(vertCoordinate, horCoordinate).squares();
+    // public void hit() {
+    //     char vertCoordinate = randomVerCoordinate();
+    //     int horCoordinate = randomHorCoordinate();
+    //     this.mapToGuess.attackSquare(vertCoordinate, horCoordinate);
+    //     this.mapToGuess.getSquare(vertCoordinate, horCoordinate).squares();
+    // }
+
+    public void attackSquare(Ocean enemy, Ocean emptyMap, char answer, int answer2)
+    {
+        enemy.getSquare(answer, answer2).done = true;
+        enemy.getSquare(answer, answer2).squares(emptyMap, answer, answer2, true); //emptyMap, answer, answer2, true
+
+
     }
 
 }
